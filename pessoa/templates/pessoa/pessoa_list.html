@@ -2,6 +2,12 @@
 {% block content %}
 <h1>Página de Pessoas</h1>
 <br>
+<form method="GET">
+    <input type="text" name="nome" placeholder="Buscar por nome"/>
+    <input type="submit" value="Buscar">
+</form>
+<br>
+<br>
 <a href="{% url 'pessoa.novo' %}"> Novo </a>
 <br><br>
 <table>
@@ -10,6 +16,7 @@
             <th>Nome</th>
             <th>Data de Nascimento</th>
             <th>Ativa?</th>
+            <th>Botões de Ações</th> 
         </tr>
     </thead>
     <tbody>
@@ -23,7 +30,11 @@
             {% else %}
             Não
             {% endif %}
-        </td>
+            </td>
+            <td>
+                <a href="{% url 'pessoa.edit' pessoa.pk %}">Editar</a>
+                <a href="{% url 'pessoa.del' pessoa.pk %}">Excluir</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
