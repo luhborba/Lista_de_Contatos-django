@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<form method="get">
+    <input type="text" name="nome" placeholder="Buscar por nome"/>
+    <input type="submit" value="Buscar"/>
+</form>
+<br>
+<a href="{% url 'contato.novo' pk_pessoa %}">Novo</a>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contato in contatos %}
+        <tr>
+            <td>{{contato.nome}}</td>
+            <td>{{ contato.email}}</td>
+            <td>{{ contato.telefone}}</td>
+            <td>
+                <a href="{% url 'contato.edit' pk_pessoa contato.pk %}">Editar</a>
+                <a href="{% url 'contato.del' pk_pessoa contato.pk %}">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
